@@ -26,7 +26,7 @@ function App() {
         <MDEditor.Markdown source={value} />
       </div>
       <div>
-        <button>Submit and Push</button>
+        <button>Submit</button>
       </div>
     </div>
   );
