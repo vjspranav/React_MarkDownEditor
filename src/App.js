@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+//import ReactDOM from "react-dom";
+import MDEditor from "@uiw/react-md-editor";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+      width: "25ch",
+    },
+  },
+}));
 
 function App() {
+  const classes = useStyles();
+  const [value, setValue] = useState("**Hello world!!!**");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <form className={classes.root} noValidate autoComplete="off">
+        <TextField id="outlined-basic" label="Filename" variant="outlined" />
+      </form>
+      <div className="container">
+        <MDEditor value={value} onChange={setValue} />
+        <MDEditor.Markdown source={value} />
+      </div>
+      <div>
+        <button>Submit and Push</button>
+      </div>
     </div>
   );
 }
